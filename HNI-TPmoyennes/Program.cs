@@ -125,7 +125,7 @@ class Eleve
 
     public double Moyenne()
     {
-        for (int i = 1; i > ; )
+        for (int i = 1; i > ; ) 
         return 
     }
 
