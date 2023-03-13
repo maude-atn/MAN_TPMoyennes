@@ -68,3 +68,66 @@ class Note
 }
 
 
+class Classe
+{
+    public string nomClasse { get; private set; }
+    public List<Eleve> eleves = new List<Eleve>();
+    public List<string> matieres = new List<string>();
+    public double moyenne;
+
+    public void ajouterEleve(string p, string n)
+    {
+        eleves.Add = new Eleve(p, n);
+    }
+    public void ajouterMatiere(string matiere)
+    {
+        matieres.Add = matiere;
+    }
+    public double Moyenne(int m)
+    {
+        double total = 0;
+      foreach (Eleve e in eleves)
+        {
+            total = total + e.Moyenne();
+        }
+       return total / eleves.Count;
+    }
+}
+
+class Eleve
+{
+    public string prenom { get; private set; }
+    public string nom { get; private set; }
+    
+    public List<Note> note = new List<Note>();
+    public Eleve(string p, string n)
+    {
+        prenom = p;
+        nom = n;
+    }
+
+    public void ajouterNote(Note n)
+    {
+        note.Add = n;
+    }
+    public double Moyenne(int m)
+    {
+        double total = 0;
+        int compteur = 0;
+        foreach (Note n in note)
+        {
+            if (n.matiere == m)
+                total = total + n.note;
+                compteur++;
+        }
+        return total / compteur;
+    }
+
+    public double Moyenne()
+    {
+        for (int i = 1; i > ; )
+        return 
+    }
+
+}
+    
