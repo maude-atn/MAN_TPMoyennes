@@ -43,14 +43,14 @@ namespace TPMoyennes
             Eleve eleve = sixiemeA.eleves[6];
             // Afficher la moyenne d'un élève dans une matière
             Console.Write(eleve.prenom + " " + eleve.nom + ", Moyenne en " + sixiemeA.matieres[1] + " : " +
-            eleve.Moyenne(1) + "\n");
+            eleve.MoyenneMatiereEleve(1) + "\n");
             // Afficher la moyenne générale du même élève
-            Console.Write(eleve.prenom + " " + eleve.nom + ", Moyenne Generale : " + eleve.Moyenne() + "\n");
+            Console.Write(eleve.prenom + " " + eleve.nom + ", Moyenne Generale : " + eleve.MoyenneGeneraleEleve() + "\n");
             // Afficher la moyenne de la classe dans une matière
-            Console.Write("Classe de " + sixiemeA.nomClasse + ", Moyenne en " + sixiemeA.matieres[1] + " : " +
-            sixiemeA.Moyenne(1) + "\n");
+            Console.Write("Classe de " + sixiemeA.NomClasse + ", Moyenne en " + sixiemeA.matieres[1] + " : " +
+            sixiemeA.MoyenneMatiereClasse(1) + "\n");
             // Afficher la moyenne générale de la classe
-            Console.Write("Classe de " + sixiemeA.nomClasse + ", Moyenne Generale : " + sixiemeA.Moyenne() + "\n");
+            Console.Write("Classe de " + sixiemeA.NomClasse + ", Moyenne Generale : " + sixiemeA.MoyenneGeneraleClasse() + "\n");
             Console.Read();
         }
     }
@@ -70,27 +70,40 @@ class Note
 
 class Classe
 {
-    public string nomClasse { get; private set; }
+    public string NomClasse { get; private set; }
     public List<Eleve> eleves = new List<Eleve>();
     public List<string> matieres = new List<string>();
     public double moyenne;
+    public Classe(string nC)
+    {
+        NomClasse = nC;
+    }
 
     public void ajouterEleve(string p, string n)
     {
-        eleves.Add = new Eleve(p, n);
+        eleves.Add(new Eleve(p, n));
     }
     public void ajouterMatiere(string matiere)
     {
-        matieres.Add = matiere;
+        matieres.Add(matiere);
     }
-    public double Moyenne(int m)
+    public double MoyenneMatiereClasse(int m)
     {
         double total = 0;
-      foreach (Eleve e in eleves)
+        foreach (Eleve e in eleves)
         {
-            total = total + e.Moyenne();
+            total = total + e.MoyenneMatiereEleve(m);
         }
-       return total / eleves.Count;
+        return total / eleves.Count;
+    }
+    public double MoyenneGeneraleClasse()
+    {
+        double total = 0;
+        for (int i = 1; i < matieres.Count; i++)
+        {
+            total = MoyenneMatiereClasse(i);
+        }
+        return total / matieres.Count;
     }
 }
 
@@ -108,26 +121,33 @@ class Eleve
 
     public void ajouterNote(Note n)
     {
-        note.Add = n;
+        note.Add(n);
     }
-    public double Moyenne(int m)
+    public double MoyenneMatiereEleve(int m)
     {
         double total = 0;
         int compteur = 0;
         foreach (Note n in note)
         {
             if (n.matiere == m)
+            {
                 total = total + n.note;
                 compteur++;
+            }
         }
         return total / compteur;
     }
-
-    public double Moyenne()
+    public double MoyenneGeneraleEleve()
     {
-        for (int i = 1; i > ; ) 
-        return 
+        double total = 0;
+        int compteur = 0;
+        for (int i = 1; i < note[note.Count - 1].matiere; i++)
+        {
+            total = total + MoyenneMatiereEleve(i);
+            compteur++;
+        }
+
+        return total / compteur;
     }
 
 }
-    
