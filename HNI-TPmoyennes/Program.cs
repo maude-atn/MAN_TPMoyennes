@@ -69,7 +69,7 @@ class Note
 
 
 class Classe
-{
+{   
     public string NomClasse { get; private set; }
     public List<Eleve> eleves = new List<Eleve>();
     public List<string> matieres = new List<string>();
